@@ -1,24 +1,5 @@
-# README
+# GITHUB REPOSITORY SEARCH APP
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A simple web app where you can display public repositories from github based on search term provided. 
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+This app can be visited here => https://search-github-repos.herokuapp.com
