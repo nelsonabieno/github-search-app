@@ -1,0 +1,56 @@
+<div class="container">
+  <br/>
+  <div class="row justify-content-center">
+    <div class="col-12 col-md-10 col-lg-8">
+      <form class="card card-sm" method="get" action="/">
+        <div class="card-body row no-gutters align-items-center">
+          <div class="col-auto">
+            <i class="fas fa-search h4 text-body"></i>
+          </div>
+          <div class="col">
+            <input class="form-control form-control-lg form-control-borderless" required="required" name="repo" placeholder="Search Github topics or keywords">
+          </div>
+          <div class="col-auto">
+            <button class="btn btn-lg btn-info" type="submit">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<h1><%= @message if @message.present? %></h1>
+
+<h3> Showing &nbsp; <%= @parsed_response["total_count"] || 0 %> &nbsp; Result(s) </h3>
+
+<div class="container">
+  <table class="table">
+      <% @parsed_response["items"].each_with_index do |x,i|%>
+        <tr>
+          <td>
+            <div class="card" style="width: 18rem;">
+              <a href="<%=@parsed_response["items"][i]["html_url"] %>">
+                <img src="<%=@parsed_response["items"][i]["owner"]["avatar_url"] %>" class="card-img-top" alt="...">
+              </a>
+              <div class="card-body">
+                <h5 class="card-title"><%= @parsed_response["items"][i]["name"].upcase %></h5>
+                <p class="card-text"><%= @parsed_response["items"][i]["description"].present? ? @parsed_response["items"][i]["description"][0..30] : '...'%> ...</p>
+                <a href="<%=@parsed_response["items"][i]["html_url"] %>" class="btn btn-info">
+                  <i class="fab fa-github"></i>
+                </a>
+                <a href="#" class="btn btn-info">
+                  <i class="fas fa-star"></i> <%=@parsed_response["items"][i]["stargazers_count"]%>
+                </a>
+                <a href="#" class="btn btn-info">
+                  <i class="fas fa-code-branch"></i> <%=@parsed_response["items"][i]["forks"]%>
+                </a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      <%end%>
+  </table>
+</div>
+</div>
+
+
