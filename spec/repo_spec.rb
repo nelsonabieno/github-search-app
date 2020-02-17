@@ -1,6 +1,5 @@
 require 'json'
 require 'httparty'
-require 'pry'
 
 RSpec.describe "GET#Index" do
   before(:all) do

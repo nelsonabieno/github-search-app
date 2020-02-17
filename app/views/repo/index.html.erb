@@ -17,18 +17,18 @@
       </form>
     </div>
   </div>
-</div>
+</div> <br>
 
-<h1><%= @message if @message.present? %></h1>
+<h1 class="text-center"><%=@message if @message.present? %></h1>
 
-<h3> Showing &nbsp; <%= @parsed_response["total_count"] || 0 %> &nbsp; Result(s) </h3>
+<h5> Showing &nbsp;<%= @total_count %> &nbsp; Result(s) for "<%= params[:repo] || '' %>" </h5>
 
 <div class="container">
-  <table class="table">
+  <div class="row">
+    <% if @parsed_response && @parsed_response["items"].present? %>
       <% @parsed_response["items"].each_with_index do |x,i|%>
-        <tr>
-          <td>
-            <div class="card" style="width: 18rem;">
+        <div class="col-4">
+            <div class="card">
               <a href="<%=@parsed_response["items"][i]["html_url"] %>">
                 <img src="<%=@parsed_response["items"][i]["owner"]["avatar_url"] %>" class="card-img-top" alt="...">
               </a>
@@ -45,12 +45,16 @@
                   <i class="fas fa-code-branch"></i> <%=@parsed_response["items"][i]["forks"]%>
                 </a>
               </div>
-            </div>
-          </td>
-        </tr>
+            </div> <br>
+        </div>
       <%end%>
-  </table>
+      <% if @paginatable_array.present? %>
+        <%= paginate @paginatable_array, theme: 'twitter-bootstrap-4' %>
+      <% end %>
+    <%end%>
+  </div>
 </div>
-</div>
+
+
 
 
